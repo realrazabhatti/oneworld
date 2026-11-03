@@ -16,7 +16,7 @@ class OneWorldApp extends StatelessWidget {
         colorSchemeSeed: Colors.blue,
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const LoginScreen(),
     );
   }
 }
@@ -71,6 +71,93 @@ class HomePage extends StatelessWidget {
             label: 'Profile',
           ),
         ],
+      ),
+    );
+  }
+}
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool hidePassword = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFF10152D),
+      body: Center(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(25),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.public, size: 90, color: Color(0xFF39D8C5)),
+              const SizedBox(height: 15),
+              const Text(
+                'OneWorld',
+                style: TextStyle(
+                  fontSize: 38,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const Text(
+                'ONE WORLD. ONE CONNECTION.',
+                style: TextStyle(color: Colors.white60),
+              ),
+              const SizedBox(height: 45),
+              const Text(
+                'Welcome Back',
+                style: TextStyle(fontSize: 27, color: Colors.white),
+              ),
+              const SizedBox(height: 25),
+              const TextField(
+                decoration: InputDecoration(
+                  labelText: 'Username or Email',
+                  border: OutlineInputBorder(),
+                  prefixIcon: Icon(Icons.person),
+                ),
+              ),
+              const SizedBox(height: 18),
+              TextField(
+                obscureText: hidePassword,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                  border: const OutlineInputBorder(),
+                  prefixIcon: const Icon(Icons.lock),
+                  suffixIcon: IconButton(
+                    icon: Icon(hidePassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        hidePassword = !hidePassword;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              const SizedBox(height: 25),
+              SizedBox(
+                width: double.infinity,
+                height: 55,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: const Text('LOG IN'),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text(
+                "Don't have an account? Sign Up",
+                style: TextStyle(color: Color(0xFF39D8C5)),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
